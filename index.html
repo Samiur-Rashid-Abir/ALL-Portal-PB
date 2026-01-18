@@ -1,0 +1,3527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panthapath Branch - Financial Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            background-color: white;
+            color: #2a5298;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .branch-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .branch-tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            color: #d0e1ff;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        /* Main Content Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Financial Products Section */
+        .products-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: #2a5298;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-btn {
+            background: white;
+            border: 2px solid #eaeaea;
+            border-radius: 10px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .product-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-color: #2a5298;
+        }
+        
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .rate-display {
+            background-color: #f0f7ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2a5298;
+            font-size: 0.9rem;
+        }
+        
+        /* News Section */
+        .news-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .news-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .update-btn {
+            background-color: #2a5298;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .update-btn:hover {
+            background-color: #1e3c72;
+        }
+        
+        .news-list {
+            list-style-type: none;
+        }
+        
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-date {
+            font-size: 0.85rem;
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .news-headline {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .news-summary {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            padding: 20px 0;
+            border-top: 1px solid #eaeaea;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal for Coming Soon Pages */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-icon {
+            font-size: 50px;
+            color: #2a5298;
+            margin-bottom: 20px;
+        }
+        
+        .modal h3 {
+            color: #2a5298;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .modal p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+        
+        .close-modal {
+            background-color: #2a5298;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .close-modal:hover {
+            background-color: #1e3c72;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .branch-name {
+                font-size: 2rem;
+            }
+            
+            .branch-tagline {
+                font-size: 1.1rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-section, .news-section {
+                padding: 20px;
+            }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { color: #d32f2f; }
+            50% { color: #ff4444; }
+        }
+        
+        .pulse-important .news-date {
+            animation: textPulse 2s infinite;
+            font-weight: bold;
+        }
+        
+        .pulse-important .news-headline {
+            animation: textPulse 2s infinite;
+            font-weight: bold;
+        }
+        
+        .pulse-important .news-summary {
+            color: #b71c1c;
+            font-weight: 500;
+        }
+        
+        /* Page Navigation Styles */
+        .page-container {
+            display: none;
+        }
+        
+        .page-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .back-to-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-main:hover {
+            background-color: #1e3c72;
+        }
+        
+        /* Common styles for subpages */
+        .subpage-header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .subpage-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .subpage-logo-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+        
+        /* Cost Center Page Styles */
+        .cost-center-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .cost-center-section .section {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cost-center-section .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .section-header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 20px;
+        }
+        
+        .section-header.sme {
+            background: linear-gradient(to right, #1565C0, #1E88E5);
+        }
+        
+        .section-header.retail {
+            background: linear-gradient(to right, #2E7D32, #43A047);
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .section-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .section-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .table-container {
+            padding: 0;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background-color: #f8f9fa;
+        }
+        
+        th {
+            padding: 16px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #eaeaea;
+            white-space: nowrap;
+        }
+        
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .cost-center {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #1a5276;
+        }
+        
+        .bangla-text {
+            font-family: 'Siyam Rupali', 'Arial', sans-serif;
+            direction: ltr;
+            color: #2c3e50;
+        }
+        
+        .instructions {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .instructions h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .instructions h3 i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #ffb300;
+            font-size: 0.95rem;
+        }
+        
+        /* Loan Rates Page Styles */
+        .loan-notes {
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .loan-notes h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .loan-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .loan-type-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 2px solid #2a5298;
+            color: #2a5298;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .loan-type-btn:hover {
+            background-color: #e8edf7;
+        }
+        
+        .loan-type-btn.active {
+            background-color: #2a5298;
+            color: white;
+        }
+        
+        .loan-table-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        
+        .loan-table-container h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rate-highlight {
+            font-weight: 700;
+            color: #1e3c72;
+        }
+        
+        .emi-calculator {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-top: 40px;
+        }
+        
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+        
+        .slider-container {
+            margin-top: 10px;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #2a5298;
+            cursor: pointer;
+        }
+        
+        .value-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .calculate-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(30, 60, 114, 0.2);
+        }
+        
+        .result-container {
+            background-color: #f8faff;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .result-container h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-label {
+            color: #666;
+        }
+        
+        .result-value {
+            font-weight: 700;
+            color: #1e3c72;
+            font-size: 1.2rem;
+        }
+        
+        .total-payment {
+            font-size: 1.5rem;
+            color: #e65100;
+        }
+        
+        .chart-container {
+            margin-top: 30px;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, #1e3c72, #2a5298);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -25px;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        .important-note {
+            background-color: #ffeaea;
+            border-left: 5px solid #d32f2f;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .important-note h3 {
+            color: #d32f2f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        /* FDR/DPS Rates Page Styles */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 2px solid #ddd;
+            color: #555;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-btn:hover {
+            background-color: #f0f9f5;
+            border-color: #2a5298;
+            color: #2a5298;
+        }
+        
+        .nav-btn.active {
+            background-color: #2a5298;
+            color: white;
+            border-color: #2a5298;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .rate-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .rate-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .rate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .rate-card-header {
+            background: linear-gradient(135deg, #2a5298 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .rate-card-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rate-card-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .rate-card-body {
+            padding: 20px;
+        }
+        
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .rate-table th {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .rate-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .rate-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rate-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .info-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #2a5298;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box h3 {
+            color: #2a5298;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tier-note {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .policies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .policy-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #2a5298;
+        }
+        
+        .policy-card h3 {
+            color: #2a5298;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .ratings-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .rating-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .rating-agency {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .rating-grade {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2a5298;
+            margin-bottom: 5px;
+        }
+        
+        .rating-outlook {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .positive {
+            color: #2a5298;
+        }
+        
+        .stable {
+            color: #2196f3;
+        }
+        
+        .negative {
+            color: #f44336;
+        }
+        
+        .maturity-amount {
+            font-size: 1.5rem;
+            color: #e65100;
+        }
+        
+        /* Media Queries for subpages */
+        @media (max-width: 992px) {
+            .calculator-container, .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .rate-cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cost-center-section {
+                flex-direction: column;
+            }
+            
+            .nav-btn, .loan-type-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .policies-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Branch Operations Manual Styles */
+        :root {
+            --primary-blue: #1a237e;
+            --secondary-blue: #283593;
+            --accent-blue: #3949ab;
+            --light-blue: #e8eaf6;
+            --text-color: #000000;
+            --card-bg: #ffffff;
+        }
+        
+        .branch-manual-body {
+            background: white no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .branch-manual-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .branch-manual-header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .branch-manual-h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            color: #1a237e;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 30px;
+            border-radius: 10px;
+        }
+        
+        .branch-manual-h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: var(--light-blue);
+            border-radius: 2px;
+        }
+        
+        .branch-manual-page-navigation {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .branch-manual-nav-button {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .branch-manual-nav-button:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        
+        .branch-manual-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+            width: 100%;
+            justify-items: center;
+        }
+        
+        .branch-manual-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 2px solid #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .branch-manual-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-blue);
+        }
+        
+        .branch-manual-card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            transition: all 0.5s ease;
+        }
+        
+        .branch-manual-card:hover .branch-manual-card-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .branch-manual-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .branch-manual-card-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-blue);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .branch-manual-card:hover .branch-manual-card-number {
+            transform: scale(1.2);
+            background: var(--accent-blue);
+        }
+        
+        .branch-manual-detail-view {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            border: 2px solid #000000;
+            animation: slideUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .branch-manual-detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .branch-manual-detail-icon {
+            font-size: 2.5rem;
+            margin-right: 20px;
+            color: var(--primary-blue);
+        }
+        
+        .branch-manual-detail-title {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+        }
+        
+        .branch-manual-detail-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+        }
+        
+        .branch-manual-back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .branch-manual-back-button:hover {
+            background: var(--accent-blue);
+            transform: translateX(-5px);
+        }
+        
+        .branch-manual-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            color: white;
+        }
+        
+        .branch-manual-search-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 300px;
+        }
+
+        .branch-manual-search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .branch-manual-search-box:focus-within {
+            box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .branch-manual-search-icon {
+            color: var(--primary-blue);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .branch-manual-search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: var(--text-color);
+            background: transparent;
+        }
+
+        .branch-manual-search-input::placeholder {
+            color: #666;
+            font-style: italic;
+        }
+
+        .branch-manual-clear-search {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .branch-manual-clear-search:hover {
+            background: #f0f0f0;
+            color: var(--primary-blue);
+        }
+
+        .branch-manual-search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            margin-top: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+        }
+
+        .branch-manual-search-result-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .branch-manual-search-result-item:hover {
+            background: var(--light-blue);
+            padding-left: 20px;
+        }
+
+        .branch-manual-search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .branch-manual-search-result-icon {
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            width: 20px;
+        }
+
+        .branch-manual-search-result-text {
+            flex: 1;
+        }
+
+        .branch-manual-search-result-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 3px;
+            font-size: 0.95rem;
+        }
+
+        .branch-manual-search-result-context {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .branch-manual-search-result-highlight {
+            background: yellow;
+            padding: 0 2px;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+        .branch-manual-search-no-results {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .branch-manual-search-section-indicator {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .branch-manual-animated-lines-container {
+            margin: 25px 0;
+            width: 100%;
+        }
+
+        .branch-manual-line-box {
+            background: linear-gradient(135deg, var(--light-blue), #ffffff);
+            border-left: 5px solid var(--primary-blue);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInLine 0.6s ease forwards;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .branch-manual-line-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(26, 35, 126, 0.05);
+            transition: width 0.5s ease;
+            z-index: 0;
+        }
+
+        .branch-manual-line-box:hover::before {
+            width: 100%;
+        }
+
+        .branch-manual-line-box:hover {
+            transform: translateX(0) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .branch-manual-line-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .branch-manual-line-icon {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .branch-manual-line-content span {
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        @keyframes slideInLine {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            70% {
+                transform: translateX(10px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .branch-manual-line-1 { animation-delay: 0.2s; }
+        .branch-manual-line-2 { animation-delay: 0.4s; }
+        .branch-manual-line-3 { animation-delay: 0.6s; }
+        .branch-manual-line-4 { animation-delay: 0.8s; }
+        .branch-manual-line-5 { animation-delay: 1.0s; }
+        .branch-manual-line-6 { animation-delay: 1.2s; }
+        .branch-manual-line-7 { animation-delay: 1.4s; }
+        .branch-manual-line-8 { animation-delay: 1.6s; }
+        .branch-manual-line-9 { animation-delay: 1.8s; }
+        .branch-manual-line-10 { animation-delay: 2.0s; }
+        .branch-manual-line-11 { animation-delay: 2.2s; }
+        .branch-manual-line-12 { animation-delay: 2.4s; }
+
+        @media (max-width: 768px) {
+            .branch-manual-search-container {
+                width: 250px;
+                top: 15px;
+                right: 15px;
+            }
+            
+            .branch-manual-search-box {
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .branch-manual-search-container {
+                width: 200px;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .branch-manual-search-box {
+                padding: 6px 10px;
+            }
+            
+            .branch-manual-search-input {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Portal Page -->
+    <div id="main-portal" class="page-container active">
+        <header>
+            <div class="container">
+                <div class="logo-container">
+                    <div class="logo">BBL</div>
+                    <h1 class="branch-name">Panthapath Branch</h1>
+                </div>
+                <p class="branch-tagline">All banking updates in One portal</p>
+            </div>
+        </header>
+        
+        <div class="container">
+            <div class="main-content">
+                <div class="products-section">
+                    <h2 class="section-title">Financial Products & Services</h2>
+                    <div class="products-grid">
+                        <!-- Deposit Rates Button -->
+                        <div class="product-btn" onclick="showPage('fdr-dps-rates')">
+                            <div class="product-icon">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div class="product-name">Deposit Rates</div>
+                            <div class="product-description">Updated interest rates for all deposit accounts</div>
+                            <div class="rate-display">Click to Open</div>
+                        </div>
+                        
+                        <!-- Loan Rates Button -->
+                        <div class="product-btn" onclick="showPage('bbl-loan-rates')">
+                            <div class="product-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="product-name">Loan Rates</div>
+                            <div class="product-description">BBL personal, auto, home loans & EMI calculator</div>
+                            <div class="rate-display">Click to Open</div>
+                        </div>
+                        
+                        <!-- Credit Cards Button -->
+                        <div class="product-btn" onclick="navigateToPage('credit-card')">
+                            <div class="product-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="product-name">Credit Cards</div>
+                            <div class="product-description">PPG rates, benefits & eligibility</div>
+                            <div class="rate-display">Coming Soon</div>
+                        </div>
+                        
+                        <!-- Savings Accounts Button -->
+                        <div class="product-btn" onclick="navigateToPage('savings')">
+                            <div class="product-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="product-name">Savings Accounts</div>
+                            <div class="product-description">Different types of savings accounts</div>
+                            <div class="rate-display">Coming Soon</div>
+                        </div>
+                        
+                        <!-- Fixed Deposits Button -->
+                        <div class="product-btn" onclick="showPage('fdr-dps-rates')">
+                            <div class="product-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="product-name">Fixed Deposits</div>
+                            <div class="product-description">Short & long term fixed deposits</div>
+                            <div class="rate-display">Click to Open</div>
+                        </div>
+                        
+                        <!-- Insurance Products Button -->
+                        <div class="product-btn" onclick="navigateToPage('insurance')">
+                            <div class="product-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="product-name">Insurance Products</div>
+                            <div class="product-description">Life, health & property insurance</div>
+                            <div class="rate-display">Coming Soon</div>
+                        </div>
+                        
+                        <!-- Changed from Investment Plans to Branch Operation Manual -->
+                        <div class="product-btn" onclick="showPage('branch-manual')">
+                            <div class="product-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="product-name">Branch Operation Manual</div>
+                            <div class="product-description">Complete branch operations guide and procedures</div>
+                            <div class="rate-display">Click to Open</div>
+                        </div>
+                        
+                        <!-- Cost Center Button -->
+                        <div class="product-btn" onclick="showPage('cost-center')">
+                            <div class="product-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="product-name">Cost Center</div>
+                            <div class="product-description">Reference portal for cost center assignment</div>
+                            <div class="rate-display">Click to Open</div>
+                        </div>
+                        
+                        <!-- More Products (Placeholder) -->
+                        <div class="product-btn" onclick="navigateToPage('more')">
+                            <div class="product-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="product-name">More Products</div>
+                            <div class="product-description">Additional services & products</div>
+                            <div class="rate-display">Coming Soon</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-section">
+                    <div class="news-title">
+                        <h2 class="section-title">Latest News & Updates</h2>
+                        <button class="update-btn" onclick="refreshNews()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                    
+                    <ul class="news-list">
+                        <li class="news-item pulse-important">
+                            <div class="news-date">January 27, 2026</div>
+                            <div class="news-headline">BFIU Master Circular 26 Exam</div>
+                            <div class="news-summary">Branch Manager will take an exam on the BFIU Master Circular 26 for the proper understanding of branch officials regarding Anti money laundering and terrorism financing.</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">January 14, 2026</div>
+                            <div class="news-headline">New loan rates submitted to CSU</div>
+                            <div class="news-summary">New rates will be applicable effective from from January 11, 2026. Previous Rates are applicable for files submitted, approved, and disbursed by January 8, 2026.Interest rates for all retail loans are variable. Personal and Auto loan rates change every 1 year.</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">June 01, 2026</div>
+                            <div class="news-headline">As per ALCO Circular: 2025/09, Updated deposit rates will be effective from January 2, 2026</div>
+                            <div class="news-summary">Interest Rates for all deposits are variable. It's subject to change as per head office</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">May 28, 2023</div>
+                            <div class="news-headline">Branch Expansion in Nearby Area</div>
+                            <div class="news-summary">Panthapath branch is expanding its services to the adjoining commercial area.</div>
+                        </li>
+                        <li class="news-item">
+                            <div class="news-date">May 20, 2023</div>
+                            <div class="news-headline">New Credit Card Rewards Program</div>
+                            <div class="news-summary">Enhanced rewards program launched for all premium credit card holders.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="container">
+                <p>Panthapath Branch Financial Portal &copy; 2026. All rates are subject to change without prior notice.</p>
+                <p>Call Center: 16221 | Routing Number: 060263629 | Address: Union Heights (2nd Floor), Holding #55/2, Bir Uttam Kazi Nuruzzaman Road, Ward #17, West Panthapath, Dhaka South, Sher-E-Bangla</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Cost Center Portal Page -->
+    <div id="cost-center" class="page-container">
+        <button class="back-to-main" onclick="showPage('main-portal')">
+            <i class="fas fa-arrow-left"></i> Back to Main Portal
+        </button>
+        
+        <header class="subpage-header">
+            <div class="container">
+                <div class="subpage-logo-container">
+                    <i class="fas fa-university subpage-logo-icon"></i>
+                    <h1>Banking Cost Center Portal</h1>
+                </div>
+                <p class="branch-tagline">A reference portal for SME and Retail Banking staff to correctly assign cost centers when booking accounts</p>
+            </div>
+        </header>
+        
+        <main class="container">
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> Portal Instructions</h3>
+                <ul>
+                    <li>This portal provides the correct cost centers for booking accounts across different banking segments.</li>
+                    <li><span class="highlight">SME Banking colleagues</span> should use the cost centers in the first table when booking Retail (RB) accounts.</li>
+                    <li><span class="highlight">Retail Banking colleagues</span> should use the cost centers in the second table when booking SME accounts.</li>
+                    <li>Cost centers are categorized by account type and customer segment.</li>
+                </ul>
+            </div>
+            
+            <div class="cost-center-section">
+                <section class="section">
+                    <div class="section-header sme">
+                        <i class="fas fa-building section-icon"></i>
+                        <h2>SME Banking Colleagues</h2>
+                        <p>Cost centers for booking Retail (RB) accounts</p>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cost Center</th>
+                                    <th>Cost Center Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cost-center">30073353</td>
+                                    <td class="bangla-text">RB-PREMIUM-SME LIABILITY SALES</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30073354</td>
+                                    <td class="bangla-text">RB-PREMIUM-SME SMALL BUSINESS</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30073355</td>
+                                    <td class="bangla-text">RB-PREMIUM-SME MFI & AGRI</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30073356</td>
+                                    <td class="bangla-text">RB-PREMIUM-SME MEDIUM BUSINESS</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30163353</td>
+                                    <td class="bangla-text">RB-GENERAL-SME LIABILITY SALES</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30163354</td>
+                                    <td class="bangla-text">RB-GENERAL-SME SMALL BUSINESS</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30163355</td>
+                                    <td class="bangla-text">RB-GENERAL-SME MFI & AGRI</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">30163356</td>
+                                    <td class="bangla-text">RB-GENERAL-SME MEDIUM BUSINESS</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Note:</strong> SME Banking staff must use these cost centers when booking Retail Banking accounts.
+                    </div>
+                </section>
+                
+                <section class="section">
+                    <div class="section-header retail">
+                        <i class="fas fa-users section-icon"></i>
+                        <h2>Retail Banking Colleagues</h2>
+                        <p>Cost centers for booking SME accounts</p>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cost Center</th>
+                                    <th>Cost Center Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cost-center">99079005</td>
+                                    <td class="bangla-text">SME-DEPOSIT-CROSS SALE-BRANCH</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">99079009</td>
+                                    <td class="bangla-text">SME-DEPOSIT CROSS SALE-RETAIL SALES</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">99079020</td>
+                                    <td class="bangla-text">SME-DEPOSIT CROSS SALE-AGENT BANKING</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">99079022</td>
+                                    <td class="bangla-text">SME-DEPOSIT- CROSS SALES - LEGAL AND RECOVERY</td>
+                                </tr>
+                                <tr>
+                                    <td class="cost-center">99089016</td>
+                                    <td class="bangla-text">SME-AGRICULTURE-DEPOSIT CROSS SALES- MFI AND BR</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Note:</strong> Retail Banking staff must use these cost centers when booking SME accounts.
+                    </div>
+                </section>
+            </div>
+            
+            <div class="instructions">
+                <h3><i class="fas fa-lightbulb"></i> Key Points to Remember</h3>
+                <ul>
+                    <li>Always verify the customer segment before selecting a cost center.</li>
+                    <li>Premium and General segments have different cost center codes.</li>
+                    <li>Cross-departmental booking requires attention to these specific cost centers.</li>
+                    <li>For any clarification, contact the Finance Department or refer to the official banking manual.</li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="container">
+                <p>© 2023 Banking Portal. This is a component of the larger banking operations portal.</p>
+                <p>Last updated: November 2023 | Version 2.1</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- BBL Loan Rates Page -->
+    <div id="bbl-loan-rates" class="page-container">
+        <button class="back-to-main" onclick="showPage('main-portal')">
+            <i class="fas fa-arrow-left"></i> Back to Main Portal
+        </button>
+        
+        <header class="subpage-header">
+            <div class="container">
+                <h1><i class="fas fa-money-check-alt"></i> BBL Loan Rates & EMI Calculator</h1>
+                <p class="branch-tagline">Check current personal, auto, and home loan rates. Calculate your EMI for different loan types.</p>
+                <p>Effective from January 11, 2026</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="loan-notes">
+                <h3><i class="fas fa-info-circle"></i> Important Notes</h3>
+                <p><strong>Effective Date:</strong> New rates apply to files submitted to CSU from January 11, 2026.</p>
+                <p><strong>Previous Rates:</strong> Applicable for files submitted, approved, and disbursed by January 8, 2026.</p>
+                <p><strong>Variable Rates:</strong> Interest rates for all retail loans are variable. Personal and Auto loan rates change every 1 year.</p>
+            </div>
+
+            <div class="loan-types">
+                <button class="loan-type-btn active" data-loan="personal">Personal Loan</button>
+                <button class="loan-type-btn" data-loan="auto">Auto Loan</button>
+                <button class="loan-type-btn" data-loan="home">Home Loan</button>
+                <button class="loan-type-btn" data-loan="digital">Digital & Secured Loans</button>
+            </div>
+
+            <div id="personal-loan" class="loan-table-container">
+                <h2><i class="fas fa-user"></i> Personal Loan Rates</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Segment</th>
+                            <th>New (Margin / Rate)</th>
+                            <th>Top-up (Margin / Rate)</th>
+                            <th>Takeover (Margin / Rate)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EB Elite</td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>EB- G1, Pro</td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                        </tr>
+                        <tr>
+                            <td>G2</td>
+                            <td><span class="rate-highlight">3.00% / 12.68%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Govt. Employee (Grade 1–9)</td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Govt. Employee (Grade 10–12)</td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Govt. Employee (Grade 13 & below)</td>
+                            <td><span class="rate-highlight">3.00% / 12.68%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Teachers, Doctors, Bankers</td>
+                            <td><span class="rate-highlight">3.00% / 12.68%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>BBL Staff Commercial PL</td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Non-EB: Category C</td>
+                            <td><span class="rate-highlight">3.00% / 12.68%</span></td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">3.00% / 12.68%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Businessman and Landlord</td>
+                            <td><span class="rate-highlight">3.00% / 12.68%</span></td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="auto-loan" class="loan-table-container" style="display: none;">
+                <h2><i class="fas fa-car"></i> Auto Loan Rates</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Segment</th>
+                            <th>Margin</th>
+                            <th>Interest Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Segment A: Govt employee, EB Elite, BRAC Family, BBL Staff</td>
+                            <td><span class="rate-highlight">1.50%</span></td>
+                            <td><span class="rate-highlight">11.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Segment B: EB G1 & G2, Landlord & Businessman</td>
+                            <td><span class="rate-highlight">1.75%</span></td>
+                            <td><span class="rate-highlight">11.43%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Segment C & Mariner</td>
+                            <td><span class="rate-highlight">2.00%</span></td>
+                            <td><span class="rate-highlight">11.68%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Freelance and Others</td>
+                            <td><span class="rate-highlight">2.50%</span></td>
+                            <td><span class="rate-highlight">12.18%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="home-loan" class="loan-table-container" style="display: none;">
+                <h2><i class="fas fa-home"></i> Home Loan Rates</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Segment</th>
+                            <th>New (Margin / Rate)</th>
+                            <th>Takeover (Margin / Rate)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Segment A: Govt employee, EB Elite, BRAC Family, BBL Staff</td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Segment B: EB G1 & G2, Landlord & Businessman</td>
+                            <td><span class="rate-highlight">1.75% / 11.43%</span></td>
+                            <td><span class="rate-highlight">1.50% / 11.18%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Segment C & Mariner</td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                            <td><span class="rate-highlight">1.75% / 11.43%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Freelance, NRB & Others</td>
+                            <td><span class="rate-highlight">2.50% / 12.18%</span></td>
+                            <td><span class="rate-highlight">2.00% / 11.68%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="digital-loan" class="loan-table-container" style="display: none;">
+                <h2><i class="fas fa-mobile-alt"></i> Digital Personal Loan & Secured Loan</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Loan Type</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Digital Personal Loan</td>
+                            <td><span class="rate-highlight">Instant Loan (EB & Staff): 11.68% (Margin: 2.00%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Digital Personal Loan</td>
+                            <td><span class="rate-highlight">Instant Loan (Cross Sell): 12.68% (Margin: 3.00%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Digital Personal Loan</td>
+                            <td><span class="rate-highlight">Digital Personal Loan (BBL Staff): 11.68% (Margin: 2.00%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Secured Loan (Margin/Spread)</td>
+                            <td><span class="rate-highlight">Regular / WEDB: 3.00%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Secured Loan (Margin/Spread)</td>
+                            <td><span class="rate-highlight">TARA: 2.50%</span></td>
+                        </tr>
+                        <tr>
+                            <td>Secured Loan (Margin/Spread)</td>
+                            <td><span class="rate-highlight">Premium Banking: 2.00%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="important-note">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Important Note</h3>
+                    <p>Minimum interest rate for Secured Loans will not be below 11.50%.</p>
+                </div>
+            </div>
+
+            <div class="emi-calculator">
+                <h2><i class="fas fa-calculator"></i> EMI Calculator</h2>
+                <div class="calculator-container">
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label for="loan-type">Loan Type</label>
+                            <select id="loan-type">
+                                <option value="personal">Personal Loan</option>
+                                <option value="auto">Auto Loan</option>
+                                <option value="home">Home Loan</option>
+                                <option value="digital">Digital Loan</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="loan-amount">Loan Amount (BDT)</label>
+                            <input type="range" id="loan-amount-slider" min="50000" max="40000000" step="50000" value="1000000" class="slider">
+                            <div class="value-display">
+                                <span>50,000</span>
+                                <span id="loan-amount-value">1,000,000</span>
+                                <span>40,000,000</span>
+                            </div>
+                            <input type="number" id="loan-amount" min="50000" max="40000000" value="1000000">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="interest-rate">Interest Rate (%)</label>
+                            <input type="range" id="interest-rate-slider" min="5" max="20" step="0.01" value="12" class="slider">
+                            <div class="value-display">
+                                <span>5%</span>
+                                <span id="interest-rate-value">12%</span>
+                                <span>20%</span>
+                            </div>
+                            <input type="number" id="interest-rate" min="5" max="20" step="0.01" value="12">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="loan-tenure">Loan Tenure (Years)</label>
+                            <input type="range" id="loan-tenure-slider" min="1" max="30" step="1" value="5" class="slider">
+                            <div class="value-display">
+                                <span>1 Year</span>
+                                <span id="loan-tenure-value">5 Years</span>
+                                <span>30 Years</span>
+                            </div>
+                            <input type="number" id="loan-tenure" min="1" max="30" value="5">
+                        </div>
+                        
+                        <button id="calculate-btn" class="calculate-btn">Calculate EMI</button>
+                    </div>
+                    
+                    <div class="result-section">
+                        <div class="result-container">
+                            <h3>Loan Breakdown</h3>
+                            <div class="result-item">
+                                <div class="result-label">Monthly EMI</div>
+                                <div id="emi-result" class="result-value">-</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Interest Payable</div>
+                                <div id="total-interest" class="result-value">-</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Payment (Principal + Interest)</div>
+                                <div id="total-payment" class="result-value total-payment">-</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Loan Amount</div>
+                                <div id="principal-amount" class="result-value">-</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Loan Tenure</div>
+                                <div id="tenure-result" class="result-value">-</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <div class="chart-bar" id="principal-bar">
+                                <div class="chart-value">0%</div>
+                                <div class="chart-label">Principal</div>
+                            </div>
+                            <div class="chart-bar" id="interest-bar">
+                                <div class="chart-value">0%</div>
+                                <div class="chart-label">Interest</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer>
+                <p>Disclaimer: The interest rates are subject to change. Please confirm with the bank for the most current rates.</p>
+                <p>EMI Calculator is for illustrative purposes only. Actual loan terms may vary.</p>
+                <p>© 2026 BBL Loan Rates Portal</p>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- FDR/DPS Rates Page -->
+    <div id="fdr-dps-rates" class="page-container">
+        <button class="back-to-main" onclick="showPage('main-portal')">
+            <i class="fas fa-arrow-left"></i> Back to Main Portal
+        </button>
+        
+        <header class="subpage-header">
+            <div class="container">
+                <div class="subpage-logo-container">
+                    <div class="logo">BB</div>
+                    <div class="header-content">
+                        <h1>BRAC Bank Fixed Deposit Portal</h1>
+                        <p class="branch-tagline">Deposit Interest Rates effective from January 02, 2026</p>
+                        <p class="alco-ref">ALCO Circular: 2025/09</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="navigation">
+                <button class="nav-btn active" data-section="fixed-deposit">
+                    <i class="fas fa-chart-line"></i> Fixed Deposit Rates
+                </button>
+                <button class="nav-btn" data-section="savings">
+                    <i class="fas fa-piggy-bank"></i> Savings Account Rates
+                </button>
+                <button class="nav-btn" data-section="dps">
+                    <i class="fas fa-retirement"></i> DPS Rates
+                </button>
+                <button class="nav-btn" data-section="calculator">
+                    <i class="fas fa-calculator"></i> FD Calculator
+                </button>
+                <button class="nav-btn" data-section="policies">
+                    <i class="fas fa-file-contract"></i> Policies & Fees
+                </button>
+            </div>
+
+            <!-- Fixed Deposit Rates Section -->
+            <div id="fixed-deposit" class="content-section active">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-line"></i> Fixed Deposit Interest Rates
+                </h2>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> Important Information</h3>
+                    <p>Fixed deposits for both <strong>Personal</strong> and <strong>SME/Corporate</strong> clients follow similar interest structures based on tenure and amount. Rates are applicable from January 02, 2026.</p>
+                </div>
+                
+                <div class="rate-cards-container">
+                    <div class="rate-card">
+                        <div class="rate-card-header">
+                            <h3><i class="fas fa-users"></i> Standard FD Rates</h3>
+                            <p>Interest after Maturity (Personal & Corporate)</p>
+                        </div>
+                        <div class="rate-card-body">
+                            <table class="rate-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tenor</th>
+                                        <th>1 Lac - < 1 Cr</th>
+                                        <th>1 Cr - < 5 Cr</th>
+                                        <th>5 Cr & Above</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>30 Days</td>
+                                        <td class="rate-highlight">3.00%</td>
+                                        <td class="rate-highlight">5.00%</td>
+                                        <td class="rate-highlight">6.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>90 - 150 Days</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                        <td class="rate-highlight">9.25%</td>
+                                        <td class="rate-highlight">9.50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12 - 18 Months</td>
+                                        <td class="rate-highlight">9.50%</td>
+                                        <td class="rate-highlight">9.50%</td>
+                                        <td class="rate-highlight">9.75%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24 & 36 Months</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="rate-card">
+                        <div class="rate-card-header">
+                            <h3><i class="fas fa-user-check"></i> Retail Interest First FD</h3>
+                            <p>Interest paid at the beginning of the tenure</p>
+                        </div>
+                        <div class="rate-card-body">
+                            <table class="rate-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tenor</th>
+                                        <th>Interest Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>6 Months</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12 Months</td>
+                                        <td class="rate-highlight">8.50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24 Months</td>
+                                        <td class="rate-highlight">8.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>36 Months</td>
+                                        <td class="rate-highlight">7.00%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="tier-note">* Rates applicable for deposits above BDT 1 Lac</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="important-notes">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Early Encashment Policy (Fixed Deposits)</h3>
+                    <ul class="notes-list">
+                        <li><span class="highlight">≥ 180 Days:</span> Contract Rate - 1% (or 4%, whichever is higher)</li>
+                        <li><span class="highlight">90 - < 180 Days:</span> 4.00% penalty rate</li>
+                        <li><span class="highlight">30 - < 90 Days:</span> 2.00% penalty rate</li>
+                        <li>Early encashment before 30 days may not be permitted without special approval</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Savings Account Rates Section -->
+            <div id="savings" class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-piggy-bank"></i> Savings Account Interest Rates
+                </h2>
+                
+                <p>Interest rates for various personal savings products are tiered based on the account balance.</p>
+                
+                <div class="rate-cards-container">
+                    <div class="rate-card">
+                        <div class="rate-card-header">
+                            <h3><i class="fas fa-user"></i> Regular & Senior Citizen Savings</h3>
+                        </div>
+                        <div class="rate-card-body">
+                            <table class="rate-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Type</th>
+                                        <th>Balance Tier</th>
+                                        <th>Regular Rate</th>
+                                        <th>TARA Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="3">Regular Savings</td>
+                                        <td>5 Cr & above</td>
+                                        <td class="rate-highlight">2.50%</td>
+                                        <td class="rate-highlight">3.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 Cr - < 5 Cr</td>
+                                        <td class="rate-highlight">2.00%</td>
+                                        <td class="rate-highlight">2.50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25 Lac - < 1 Cr</td>
+                                        <td class="rate-highlight">0.75% - 1.00%</td>
+                                        <td class="rate-highlight">1.25% - 1.50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">Senior Citizen (Golden Benefits)</td>
+                                        <td>5 Cr & above</td>
+                                        <td class="rate-highlight">3.50%</td>
+                                        <td class="rate-highlight">3.50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1 Cr - < 5 Cr</td>
+                                        <td class="rate-highlight">3.00%</td>
+                                        <td class="rate-highlight">3.25%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="rate-card">
+                        <div class="rate-card-header">
+                            <h3><i class="fas fa-star"></i> Specialized Savings Products</h3>
+                        </div>
+                        <div class="rate-card-body">
+                            <table class="rate-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Details</th>
+                                        <th>Interest Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Future Star</td>
+                                        <td>Kids/Students < 18</td>
+                                        <td class="rate-highlight">3.50%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Agami</td>
+                                        <td>Students 18-25</td>
+                                        <td class="rate-highlight">0.50% - 2.00% (Regular)<br>1.00% - 2.50% (TARA)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>High Value Premium Savers</td>
+                                        <td>5-10 Lac to 3 Cr+</td>
+                                        <td class="rate-highlight">2.00% - 6.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Probashi Poribar (Savings)</td>
+                                        <td>Any amount</td>
+                                        <td class="rate-highlight">3.00% (3.50% TARA)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Employee Banking</td>
+                                        <td>Depends on balance</td>
+                                        <td class="rate-highlight">1.00% - 3.50%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-lightbulb"></i> SME and Corporate Accounts</h3>
+                    <p><strong>SME Current Accounts:</strong> Interest ranges from 0.25% to 3.00% depending on the specific product (Prapti, Prothom, Uddokta) and balance.</p>
+                    <p><strong>Special Notice Deposit (SND):</strong> 0.25% (under 1 Cr) to 3.00% (100 Cr & above).</p>
+                </div>
+            </div>
+
+            <!-- DPS Rates Section -->
+            <div id="dps" class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-retirement"></i> Deposit Pension Scheme (DPS)
+                </h2>
+                
+                <div class="rate-cards-container">
+                    <div class="rate-card">
+                        <div class="rate-card-header">
+                            <h3><i class="fas fa-percentage"></i> DPS Interest Rates</h3>
+                        </div>
+                        <div class="rate-card-body">
+                            <table class="rate-table">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Personal & SME</th>
+                                        <th>TARA, PB, EB & Probashi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 Year</td>
+                                        <td class="rate-highlight">8.50%</td>
+                                        <td class="rate-highlight">8.75%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2 Years</td>
+                                        <td class="rate-highlight">8.75%</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 - 10 Years</td>
+                                        <td class="rate-highlight">9.00%</td>
+                                        <td class="rate-highlight">9.25%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="rate-card">
+                        <div class="rate-card-header">
+                            <h3><i class="fas fa-handshake"></i> Additional Benefits</h3>
+                        </div>
+                        <div class="rate-card-body">
+                            <ul style="padding-left: 20px;">
+                                <li><strong>Loan Facility:</strong> 90% of deposited amount (95% for TARA customers)</li>
+                                <li><strong>Tax Rebate:</strong> Available as per government regulations</li>
+                                <li><strong>Flexible Tenure:</strong> 3 to 10 years</li>
+                                <li><strong>Monthly/Quarterly/Yearly</strong> deposit options</li>
+                                <li><strong>Premature withdrawal</strong> facility with applicable terms</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FD Calculator Section -->
+            <div id="calculator" class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-calculator"></i> Fixed Deposit Calculator
+                </h2>
+                
+                <div class="calculator-container">
+                    <div class="calculator-grid">
+                        <div class="input-section">
+                            <div class="input-group">
+                                <label for="deposit-amount">Deposit Amount (BDT)</label>
+                                <input type="range" id="deposit-amount-slider" min="100000" max="10000000" step="50000" value="1000000" class="slider">
+                                <div class="value-display">
+                                    <span>1,00,000</span>
+                                    <span id="deposit-amount-value">10,00,000</span>
+                                    <span>1,00,00,000</span>
+                                </div>
+                                <input type="number" id="deposit-amount" min="100000" max="10000000" value="1000000">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="interest-rate">Interest Rate (%)</label>
+                                <input type="range" id="interest-rate-slider" min="3" max="12" step="0.1" value="9.5" class="slider">
+                                <div class="value-display">
+                                    <span>3%</span>
+                                    <span id="interest-rate-value">9.5%</span>
+                                    <span>12%</span>
+                                </div>
+                                <input type="number" id="interest-rate" min="3" max="12" step="0.1" value="9.5">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="deposit-tenure">Tenure (Months)</label>
+                                <input type="range" id="deposit-tenure-slider" min="1" max="60" step="1" value="12" class="slider">
+                                <div class="value-display">
+                                    <span>1 Month</span>
+                                    <span id="deposit-tenure-value">12 Months</span>
+                                    <span>60 Months</span>
+                                </div>
+                                <input type="number" id="deposit-tenure" min="1" max="60" value="12">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="interest-payout">Interest Payout Frequency</label>
+                                <select id="interest-payout">
+                                    <option value="maturity">At Maturity</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="half-yearly">Half-Yearly</option>
+                                    <option value="yearly">Yearly</option>
+                                </select>
+                            </div>
+                            
+                            <button id="calculate-fd-btn" class="calculate-btn">Calculate Maturity Amount</button>
+                        </div>
+                        
+                        <div class="result-section">
+                            <div class="result-container">
+                                <h3>FD Calculation Results</h3>
+                                <div class="result-item">
+                                    <div class="result-label">Deposit Amount</div>
+                                    <div id="principal-result" class="result-value">-</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-label">Interest Rate</div>
+                                    <div id="rate-result" class="result-value">-</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-label">Tenure</div>
+                                    <div id="tenure-result" class="result-value">-</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-label">Payout Information</div>
+                                    <div id="interest-earned" class="result-value">-</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-label">Maturity Amount</div>
+                                    <div id="maturity-amount" class="result-value maturity-amount">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policies & Fees Section -->
+            <div id="policies" class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-file-contract"></i> Policies & Fees
+                </h2>
+                
+                <div class="policies-container">
+                    <div class="policy-card">
+                        <h3><i class="fas fa-money-bill-wave"></i> Taxes and Duties</h3>
+                        <ul style="padding-left: 20px; margin-bottom: 15px;">
+                            <li><strong>Tax at Source:</strong> 10% for Individuals and 20% for Companies</li>
+                            <li><strong>Excise Duty:</strong> Annual tiered fees
+                                <ul style="padding-left: 20px; margin-top: 8px;">
+                                    <li>Up to 3 Lac: Nil</li>
+                                    <li>3 Lac - 15 Lac: 150 BDT</li>
+                                    <li>15 Lac - 1 Cr: 500 BDT</li>
+                                    <li>1 Cr - 5 Cr: 2,500 BDT</li>
+                                    <li>Above 5 Cr: 50,000 BDT</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3><i class="fas fa-balance-scale"></i> Credit Ratings</h3>
+                        <div class="ratings-container" style="margin-top: 15px;">
+                            <div class="rating-card">
+                                <div class="rating-agency">CRAB</div>
+                                <div class="rating-grade">AAA/ST-1</div>
+                                <div class="rating-outlook stable">(Stable)</div>
+                            </div>
+                            <div class="rating-card">
+                                <div class="rating-agency">S&P Global</div>
+                                <div class="rating-grade">B+</div>
+                                <div class="rating-outlook stable">(Stable)</div>
+                            </div>
+                            <div class="rating-card">
+                                <div class="rating-agency">Moody's</div>
+                                <div class="rating-grade">B2</div>
+                                <div class="rating-outlook negative">(Negative)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="important-notes">
+                    <h3><i class="fas fa-exclamation-circle"></i> Important Reminders</h3>
+                    <ul class="notes-list">
+                        <li>All rates are subject to change as per ALCO decisions</li>
+                        <li>Interest is calculated on daily balance basis</li>
+                        <li>TDS certificates will be provided for tax deduction</li>
+                        <li>Premature withdrawal charges apply as per policy</li>
+                        <li>Please refer to account opening documents for complete terms and conditions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <footer>
+                <p>Disclaimer: The interest rates and policies are subject to change. Please confirm with the bank for the most current rates.</p>
+                <p>© 2026 BRAC Bank Limited. All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Branch Operations Manual Page -->
+    <div id="branch-manual" class="page-container">
+        <button class="back-to-main" onclick="showPage('main-portal')">
+            <i class="fas fa-arrow-left"></i> Back to Main Portal
+        </button>
+        
+        <div class="branch-manual-container">
+            <div class="branch-manual-header">
+                <h1 class="branch-manual-h1">Branch Operation Manual</h1>
+            </div>
+            
+            <div class="branch-manual-cards-container" id="branchManualMainMenu">
+                <!-- Cash Premises Access Control Card -->
+                <div class="branch-manual-card" data-card="access-control">
+                    <div class="branch-manual-card-number">1</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cash Premises Access Control</h3>
+                </div>
+                
+                <!-- Additional cards for other sections -->
+                <div class="branch-manual-card" data-card="security-cash">
+                    <div class="branch-manual-card-number">2</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Security in Cash Area</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="vault-management">
+                    <div class="branch-manual-card-number">3</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-vault"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Counter, Vault Limit & Cash Management</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cash-deposit">
+                    <div class="branch-manual-card-number">4</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cash Deposit</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cheque-deposit">
+                    <div class="branch-manual-card-number">5</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cheque Deposit</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cheque-management">
+                    <div class="branch-manual-card-number">6</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Returned Cheque Management</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="pay-order">
+                    <div class="branch-manual-card-number">7</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-stamp"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Pay Order, DD & Banking Services</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="outstation-collection">
+                    <div class="branch-manual-card-number">8</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Outstation Bank Collection</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cash-withdrawal">
+                    <div class="branch-manual-card-number">9</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cash Withdrawal</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="prize-bond">
+                    <div class="branch-manual-card-number">10</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Prize Bond</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="atm-management">
+                    <div class="branch-manual-card-number">11</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">ATM Cash Management</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="rcdm-process">
+                    <div class="branch-manual-card-number">12</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">RCDM GL & Claim Settlement</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cash-remit">
+                    <div class="branch-manual-card-number">13</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cash Remit</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="video-footage">
+                    <div class="branch-manual-card-number">14</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Guideline for Video Footage</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="key-maintenance">
+                    <div class="branch-manual-card-number">15</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Key Maintenance</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="gl-balancing">
+                    <div class="branch-manual-card-number">16</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">GL Balancing & Expenses</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cash-report">
+                    <div class="branch-manual-card-number">17</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cash Transaction Report</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="ecmr">
+                    <div class="branch-manual-card-number">18</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">ECMR</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="sar-str">
+                    <div class="branch-manual-card-number">19</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">SAR/STR</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="account-opening">
+                    <div class="branch-manual-card-number">20</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Account Opening</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="fixed-deposit">
+                    <div class="branch-manual-card-number">21</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Fixed Deposit</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="account-closing">
+                    <div class="branch-manual-card-number">22</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-user-minus"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Account Closing</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="deceased-account">
+                    <div class="branch-manual-card-number">23</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Deceased Account Management</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="garnishee">
+                    <div class="branch-manual-card-number">24</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Garnishee Order Instructions</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="data-change">
+                    <div class="branch-manual-card-number">25</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-address-card"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Address & Data Change</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="debit-card">
+                    <div class="branch-manual-card-number">26</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Debit Card Management</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="security-items">
+                    <div class="branch-manual-card-number">27</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Security Items Management</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="cheque-process">
+                    <div class="branch-manual-card-number">28</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-money-check"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Cheque Processing</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="dormant-account">
+                    <div class="branch-manual-card-number">29</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Dormant Account</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="sanchaypatra">
+                    <div class="branch-manual-card-number">30</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Sanchaypatra</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="fund-transfer">
+                    <div class="branch-manual-card-number">31</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Fund Transfer</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="remittance">
+                    <div class="branch-manual-card-number">32</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Remittance</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="student-file">
+                    <div class="branch-manual-card-number">33</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Student File</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="authorization">
+                    <div class="branch-manual-card-number">34</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Authorization</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="holiday-visit">
+                    <div class="branch-manual-card-number">35</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Holiday & Surprise Visit</h3>
+                </div>
+                
+                <div class="branch-manual-card" data-card="mandate">
+                    <div class="branch-manual-card-number">36</div>
+                    <div class="branch-manual-card-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3 class="branch-manual-card-title">Mandate Instruction</h3>
+                </div>
+            </div>
+            
+            <!-- Cash Premises Access Control Detail View -->
+            <div id="branchManualDetailView" style="display: none;">
+                <div class="branch-manual-header">
+                    <h1 class="branch-manual-h1" id="branchManualDetailTitle">Cash Premises Access Control</h1>
+                </div>
+                
+                <div class="branch-manual-page-navigation">
+                    <button class="branch-manual-nav-button" onclick="showBranchManualMainMenu()">
+                        <i class="fas fa-arrow-left"></i> Back to Main Menu
+                    </button>
+                </div>
+                
+                <div class="branch-manual-detail-view">
+                    <div class="branch-manual-detail-header">
+                        <div class="branch-manual-detail-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h2 class="branch-manual-detail-title">Entry Restricted Area</h2>
+                    </div>
+                    
+                    <div class="branch-manual-detail-content">
+                        <div class="branch-manual-animated-lines-container">
+                            <div class="branch-manual-line-box branch-manual-line-1">
+                                <div class="branch-manual-line-content">
+                                    <i class="fas fa-exclamation-circle branch-manual-line-icon"></i>
+                                    <span>Cash premises are Entry Restricted area.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="branch-manual-line-box branch-manual-line-2">
+                                <div class="branch-manual-line-content">
+                                    <i class="fas fa-user-shield branch-manual-line-icon"></i>
+                                    <span>This means that only authorized personnel are allowed to enter these areas.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="branch-manual-line-box branch-manual-line-3">
+                                <div class="branch-manual-line-content">
+                                    <i class="fas fa-ban branch-manual-line-icon"></i>
+                                    <span>Unauthorized access is strictly prohibited.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="branch-manual-line-box branch-manual-line-4">
+                                <div class="branch-manual-line-content">
+                                    <i class="fas fa-gavel branch-manual-line-icon"></i>
+                                    <span>Violation may result in disciplinary action.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="branch-manual-line-box branch-manual-line-5">
+                                <div class="branch-manual-line-content">
+                                    <i class="fas fa-clipboard-check branch-manual-line-icon"></i>
+                                    <span>All access must be logged in the visitor register.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="branch-manual-line-box branch-manual-line-6">
+                                <div class="branch-manual-line-content">
+                                    <i class="fas fa-eye branch-manual-line-icon"></i>
+                                    <span>CCTV monitoring is active in all restricted areas.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="branch-manual-back-button" onclick="showBranchManualMainMenu()">
+                        <i class="fas fa-arrow-left"></i> Back to Main Menu
+                    </div>
+                </div>
+            </div>
+            
+            <div class="branch-manual-footer">
+                <p>Branch Operation Manual System</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal for Coming Soon Pages -->
+    <div class="modal" id="pageModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h3>Portal Under Development</h3>
+            <p id="modalMessage">This dedicated portal page is currently under development. Please check back soon for detailed information about this financial product.</p>
+            <button class="close-modal" onclick="closeModal()">Continue to Main Portal</button>
+        </div>
+    </div>
+    
+    <script>
+        // Page navigation function
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top of page
+            window.scrollTo(0, 0);
+            
+            // If showing FDR/DPS page, initialize its navigation
+            if (pageId === 'fdr-dps-rates') {
+                setTimeout(initFDRNavigation, 100);
+            }
+            
+            // If showing Loan Rates page, initialize its functionality
+            if (pageId === 'bbl-loan-rates') {
+                setTimeout(initLoanRates, 100);
+            }
+            
+            // If showing Branch Manual, initialize it
+            if (pageId === 'branch-manual') {
+                setTimeout(initBranchManual, 100);
+            }
+        }
+        
+        // Function to handle navigation to coming soon pages
+        function navigateToPage(pageType) {
+            const modal = document.getElementById('pageModal');
+            const modalMessage = document.getElementById('modalMessage');
+            
+            // Set appropriate message based on page type
+            let pageName = "";
+            switch(pageType) {
+                case 'credit-card':
+                    pageName = "Credit Cards";
+                    break;
+                case 'savings':
+                    pageName = "Savings Accounts";
+                    break;
+                case 'insurance':
+                    pageName = "Insurance Products";
+                    break;
+                case 'investment':
+                    pageName = "Investment Plans";
+                    break;
+                case 'more':
+                    pageName = "Additional Products";
+                    break;
+                default:
+                    pageName = "This Financial Product";
+            }
+            
+            modalMessage.textContent = `The ${pageName} portal is currently under development. Please check back soon for detailed information about this financial product.`;
+            modal.style.display = "flex";
+        }
+        
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('pageModal');
+            modal.style.display = "none";
+        }
+        
+        // Function to refresh news (simulated)
+        function refreshNews() {
+            const updateBtn = document.querySelector('.update-btn');
+            const originalText = updateBtn.innerHTML;
+            
+            // Show loading state
+            updateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+            updateBtn.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // In a real app, this would fetch new news from a server
+                alert("News updated with the latest information!");
+                
+                // Reset button
+                updateBtn.innerHTML = originalText;
+                updateBtn.disabled = false;
+            }, 1500);
+        }
+        
+        // Initialize FDR/DPS page navigation
+        function initFDRNavigation() {
+            const navButtons = document.querySelectorAll('#fdr-dps-rates .nav-btn');
+            const contentSections = document.querySelectorAll('#fdr-dps-rates .content-section');
+            
+            if (navButtons.length === 0) return;
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and sections
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show selected section
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+            
+            // Initialize FD Calculator
+            initFDCalculator();
+        }
+        
+        // Initialize FD Calculator
+        function initFDCalculator() {
+            const depositAmountSlider = document.getElementById('deposit-amount-slider');
+            const depositAmountInput = document.getElementById('deposit-amount');
+            const depositAmountValue = document.getElementById('deposit-amount-value');
+            
+            const interestRateSlider = document.getElementById('interest-rate-slider');
+            const interestRateInput = document.getElementById('interest-rate');
+            const interestRateValue = document.getElementById('interest-rate-value');
+            
+            const depositTenureSlider = document.getElementById('deposit-tenure-slider');
+            const depositTenureInput = document.getElementById('deposit-tenure');
+            const depositTenureValue = document.getElementById('deposit-tenure-value');
+            
+            const calculateFdBtn = document.getElementById('calculate-fd-btn');
+            
+            if (!depositAmountSlider) return; // Exit if elements don't exist
+            
+            // Format number with commas
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
+            // Sync slider and input for deposit amount
+            depositAmountSlider.addEventListener('input', function() {
+                const value = formatNumber(this.value);
+                depositAmountInput.value = this.value;
+                depositAmountValue.textContent = value;
+            });
+            
+            depositAmountInput.addEventListener('input', function() {
+                let value = Math.min(Math.max(this.value, 100000), 10000000);
+                this.value = value;
+                depositAmountSlider.value = value;
+                depositAmountValue.textContent = formatNumber(value);
+            });
+            
+            // Sync slider and input for interest rate
+            interestRateSlider.addEventListener('input', function() {
+                interestRateInput.value = this.value;
+                interestRateValue.textContent = this.value + '%';
+            });
+            
+            interestRateInput.addEventListener('input', function() {
+                let value = Math.min(Math.max(this.value, 3), 12);
+                this.value = value;
+                interestRateSlider.value = value;
+                interestRateValue.textContent = value + '%';
+            });
+            
+            // Sync slider and input for deposit tenure
+            depositTenureSlider.addEventListener('input', function() {
+                depositTenureInput.value = this.value;
+                const years = Math.floor(this.value / 12);
+                const months = this.value % 12;
+                let displayText = '';
+                if (years > 0) displayText += years + ' Year' + (years > 1 ? 's ' : ' ');
+                if (months > 0) displayText += months + ' Month' + (months > 1 ? 's' : '');
+                depositTenureValue.textContent = displayText.trim() || '1 Month';
+            });
+            
+            depositTenureInput.addEventListener('input', function() {
+                let value = Math.min(Math.max(this.value, 1), 60);
+                this.value = value;
+                depositTenureSlider.value = value;
+                const years = Math.floor(value / 12);
+                const months = value % 12;
+                let displayText = '';
+                if (years > 0) displayText += years + ' Year' + (years > 1 ? 's ' : ' ');
+                if (months > 0) displayText += months + ' Month' + (months > 1 ? 's' : '');
+                depositTenureValue.textContent = displayText.trim() || '1 Month';
+            });
+            
+            // Calculate FD maturity amount
+            function calculateFD() {
+                const depositAmount = parseFloat(depositAmountInput.value);
+                const interestRate = parseFloat(interestRateInput.value);
+                const tenureMonths = parseFloat(depositTenureInput.value);
+                const payoutFrequency = document.getElementById('interest-payout').value;
+                
+                // Convert months to years for calculation
+                const tenureYears = tenureMonths / 12;
+                
+                let maturityAmount, totalInterest;
+                let monthlyPayout = 0;
+                let quarterlyPayout = 0;
+                let halfYearlyPayout = 0;
+                let yearlyPayout = 0;
+                
+                // Calculate based on payout frequency
+                const annualRate = interestRate / 100;
+                
+                if (payoutFrequency === 'maturity') {
+                    // Compound interest at maturity
+                    maturityAmount = depositAmount * Math.pow(1 + annualRate, tenureYears);
+                    totalInterest = maturityAmount - depositAmount;
+                } else if (payoutFrequency === 'monthly') {
+                    // Monthly compounding
+                    const monthlyRate = annualRate / 12;
+                    const totalMonths = tenureMonths;
+                    maturityAmount = depositAmount * Math.pow(1 + monthlyRate, totalMonths);
+                    totalInterest = maturityAmount - depositAmount;
+                    
+                    // Calculate monthly payout (interest only)
+                    monthlyPayout = depositAmount * monthlyRate;
+                    
+                } else if (payoutFrequency === 'quarterly') {
+                    // Quarterly compounding
+                    const quarterlyRate = annualRate / 4;
+                    const totalQuarters = tenureMonths / 3;
+                    maturityAmount = depositAmount * Math.pow(1 + quarterlyRate, totalQuarters);
+                    totalInterest = maturityAmount - depositAmount;
+                    
+                    // Calculate quarterly payout
+                    quarterlyPayout = depositAmount * quarterlyRate;
+                    
+                } else if (payoutFrequency === 'half-yearly') {
+                    // Half-yearly compounding
+                    const halfYearlyRate = annualRate / 2;
+                    const totalHalfYears = tenureMonths / 6;
+                    maturityAmount = depositAmount * Math.pow(1 + halfYearlyRate, totalHalfYears);
+                    totalInterest = maturityAmount - depositAmount;
+                    
+                    // Calculate half-yearly payout
+                    halfYearlyPayout = depositAmount * halfYearlyRate;
+                    
+                } else if (payoutFrequency === 'yearly') {
+                    // Yearly compounding
+                    maturityAmount = depositAmount * Math.pow(1 + annualRate, tenureYears);
+                    totalInterest = maturityAmount - depositAmount;
+                    
+                    // Calculate yearly payout
+                    yearlyPayout = depositAmount * annualRate;
+                }
+                
+                // Update results - show different information based on payout frequency
+                document.getElementById('principal-result').textContent = '৳' + formatNumber(depositAmount);
+                document.getElementById('rate-result').textContent = interestRate + '%';
+                
+                const years = Math.floor(tenureMonths / 12);
+                const months = tenureMonths % 12;
+                let tenureText = '';
+                if (years > 0) tenureText += years + ' Year' + (years > 1 ? 's ' : ' ');
+                if (months > 0) tenureText += months + ' Month' + (months > 1 ? 's' : '');
+                document.getElementById('tenure-result').textContent = tenureText.trim();
+                
+                // Show payout information based on frequency
+                let payoutInfo = '';
+                if (payoutFrequency === 'monthly') {
+                    payoutInfo = 'Monthly Interest: ৳' + formatNumber(monthlyPayout.toFixed(0));
+                } else if (payoutFrequency === 'quarterly') {
+                    payoutInfo = 'Quarterly Interest: ৳' + formatNumber(quarterlyPayout.toFixed(0));
+                } else if (payoutFrequency === 'half-yearly') {
+                    payoutInfo = 'Half-Yearly Interest: ৳' + formatNumber(halfYearlyPayout.toFixed(0));
+                } else if (payoutFrequency === 'yearly') {
+                    payoutInfo = 'Yearly Interest: ৳' + formatNumber(yearlyPayout.toFixed(0));
+                } else {
+                    payoutInfo = 'Total Interest: ৳' + formatNumber(totalInterest.toFixed(0));
+                }
+                
+                // Update the display
+                document.getElementById('interest-earned').textContent = payoutInfo;
+                document.getElementById('maturity-amount').textContent = '৳' + formatNumber(maturityAmount.toFixed(0));
+            }
+            
+            // Calculate on button click
+            calculateFdBtn.addEventListener('click', calculateFD);
+            
+            // Calculate on page load
+            calculateFD();
+            
+            // Update calculation when inputs change
+            depositAmountInput.addEventListener('change', calculateFD);
+            interestRateInput.addEventListener('change', calculateFD);
+            depositTenureInput.addEventListener('change', calculateFD);
+            document.getElementById('interest-payout').addEventListener('change', calculateFD);
+            
+            // Format initial values
+            depositAmountValue.textContent = formatNumber(depositAmountInput.value);
+            interestRateValue.textContent = interestRateInput.value + '%';
+            const initialYears = Math.floor(depositTenureInput.value / 12);
+            const initialMonths = depositTenureInput.value % 12;
+            let initialDisplay = '';
+            if (initialYears > 0) initialDisplay += initialYears + ' Year' + (initialYears > 1 ? 's ' : ' ');
+            if (initialMonths > 0) initialDisplay += initialMonths + ' Month' + (initialMonths > 1 ? 's' : '');
+            depositTenureValue.textContent = initialDisplay.trim() || '1 Month';
+        }
+        
+        // Initialize Loan Rates page functionality
+        function initLoanRates() {
+            const loanButtons = document.querySelectorAll('#bbl-loan-rates .loan-type-btn');
+            const loanTables = {
+                'personal': document.getElementById('personal-loan'),
+                'auto': document.getElementById('auto-loan'),
+                'home': document.getElementById('home-loan'),
+                'digital': document.getElementById('digital-loan')
+            };
+            
+            if (loanButtons.length === 0) return;
+            
+            loanButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    loanButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Hide all loan tables
+                    Object.values(loanTables).forEach(table => table.style.display = 'none');
+                    
+                    // Show selected loan table
+                    const loanType = this.getAttribute('data-loan');
+                    loanTables[loanType].style.display = 'block';
+                    
+                    // Update EMI calculator loan type
+                    document.getElementById('loan-type').value = loanType;
+                    
+                    // Update interest rate based on loan type
+                    updateInterestRateForLoanType(loanType);
+                });
+            });
+            
+            // Initialize EMI Calculator
+            initEMICalculator();
+        }
+        
+        // Initialize EMI Calculator
+        function initEMICalculator() {
+            const loanAmountSlider = document.getElementById('loan-amount-slider');
+            const loanAmountInput = document.getElementById('loan-amount');
+            const loanAmountValue = document.getElementById('loan-amount-value');
+            
+            const interestRateSlider = document.getElementById('interest-rate-slider');
+            const interestRateInput = document.getElementById('interest-rate');
+            const interestRateValue = document.getElementById('interest-rate-value');
+            
+            const loanTenureSlider = document.getElementById('loan-tenure-slider');
+            const loanTenureInput = document.getElementById('loan-tenure');
+            const loanTenureValue = document.getElementById('loan-tenure-value');
+            
+            const calculateBtn = document.getElementById('calculate-btn');
+            
+            if (!loanAmountSlider) return; // Exit if elements don't exist
+            
+            // Format number with commas
+            function formatNumber(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
+            // Sync slider and input for loan amount
+            loanAmountSlider.addEventListener('input', function() {
+                const value = formatNumber(this.value);
+                loanAmountInput.value = this.value;
+                loanAmountValue.textContent = value;
+            });
+            
+            loanAmountInput.addEventListener('input', function() {
+                let value = Math.min(Math.max(this.value, 50000), 40000000);
+                this.value = value;
+                loanAmountSlider.value = value;
+                loanAmountValue.textContent = formatNumber(value);
+            });
+            
+            // Sync slider and input for interest rate
+            interestRateSlider.addEventListener('input', function() {
+                interestRateInput.value = this.value;
+                interestRateValue.textContent = this.value + '%';
+            });
+            
+            interestRateInput.addEventListener('input', function() {
+                let value = Math.min(Math.max(this.value, 5), 20);
+                this.value = value;
+                interestRateSlider.value = value;
+                interestRateValue.textContent = value + '%';
+            });
+            
+            // Sync slider and input for loan tenure
+            loanTenureSlider.addEventListener('input', function() {
+                loanTenureInput.value = this.value;
+                loanTenureValue.textContent = this.value + (this.value == 1 ? ' Year' : ' Years');
+            });
+            
+            loanTenureInput.addEventListener('input', function() {
+                let value = Math.min(Math.max(this.value, 1), 30);
+                this.value = value;
+                loanTenureSlider.value = value;
+                loanTenureValue.textContent = value + (value == 1 ? ' Year' : ' Years');
+            });
+            
+            // Calculate EMI
+            calculateBtn.addEventListener('click', calculateEMI);
+            
+            // Calculate on page load
+            calculateEMI();
+            
+            // Update interest rate based on selected loan type
+            function updateInterestRateForLoanType(loanType) {
+                let defaultRate = 12;
+                
+                switch(loanType) {
+                    case 'personal':
+                        defaultRate = 12.18; // Average rate for personal loans
+                        break;
+                    case 'auto':
+                        defaultRate = 11.68; // Average rate for auto loans
+                        break;
+                    case 'home':
+                        defaultRate = 11.68; // Average rate for home loans
+                        break;
+                    case 'digital':
+                        defaultRate = 12.18; // Average rate for digital loans
+                        break;
+                }
+                
+                // Update both slider and input
+                interestRateSlider.value = defaultRate;
+                interestRateInput.value = defaultRate;
+                interestRateValue.textContent = defaultRate + '%';
+                
+                // Recalculate EMI with new rate
+                calculateEMI();
+            }
+            
+            // EMI calculation function
+            function calculateEMI() {
+                const loanAmount = parseFloat(loanAmountInput.value);
+                const interestRate = parseFloat(interestRateInput.value);
+                const loanTenure = parseFloat(loanTenureInput.value);
+                
+                // Convert annual interest rate to monthly and percentage to decimal
+                const monthlyInterestRate = (interestRate / 12) / 100;
+                
+                // Convert tenure from years to months
+                const loanTenureMonths = loanTenure * 12;
+                
+                // Calculate EMI using the formula: EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)
+                const emi = loanAmount * monthlyInterestRate * 
+                           Math.pow(1 + monthlyInterestRate, loanTenureMonths) / 
+                           (Math.pow(1 + monthlyInterestRate, loanTenureMonths) - 1);
+                
+                // Calculate total payment and interest
+                const totalPayment = emi * loanTenureMonths;
+                const totalInterest = totalPayment - loanAmount;
+                
+                // Calculate percentage for chart
+                const principalPercentage = Math.round((loanAmount / totalPayment) * 100);
+                const interestPercentage = 100 - principalPercentage;
+                
+                // Update results
+                document.getElementById('emi-result').textContent = '৳' + formatNumber(emi.toFixed(0));
+                document.getElementById('total-interest').textContent = '৳' + formatNumber(totalInterest.toFixed(0));
+                document.getElementById('total-payment').textContent = '৳' + formatNumber(totalPayment.toFixed(0));
+                document.getElementById('principal-amount').textContent = '৳' + formatNumber(loanAmount);
+                document.getElementById('tenure-result').textContent = loanTenure + ' Years (' + loanTenureMonths + ' Months)';
+                
+                // Update chart
+                document.getElementById('principal-bar').style.height = principalPercentage + '%';
+                document.getElementById('principal-bar').querySelector('.chart-value').textContent = principalPercentage + '%';
+                
+                document.getElementById('interest-bar').style.height = interestPercentage + '%';
+                document.getElementById('interest-bar').querySelector('.chart-value').textContent = interestPercentage + '%';
+            }
+            
+            // Update interest rate when loan type changes in EMI calculator
+            document.getElementById('loan-type').addEventListener('change', function() {
+                updateInterestRateForLoanType(this.value);
+            });
+            
+            // Format initial values
+            loanAmountValue.textContent = formatNumber(loanAmountInput.value);
+            interestRateValue.textContent = interestRateInput.value + '%';
+            loanTenureValue.textContent = loanTenureInput.value + ' Years';
+        }
+        
+        // Initialize Branch Operations Manual
+        function initBranchManual() {
+            const branchManualCards = document.querySelectorAll('#branchManualMainMenu .branch-manual-card');
+            
+            branchManualCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const cardId = this.getAttribute('data-card');
+                    showBranchManualDetail(cardId);
+                });
+            });
+        }
+        
+        function showBranchManualDetail(cardId) {
+            document.getElementById('branchManualMainMenu').style.display = 'none';
+            document.getElementById('branchManualDetailView').style.display = 'block';
+            
+            // Update title based on selected card
+            const card = document.querySelector(`[data-card="${cardId}"] .branch-manual-card-title`);
+            if (card) {
+                document.getElementById('branchManualDetailTitle').textContent = card.textContent;
+            }
+        }
+        
+        function showBranchManualMainMenu() {
+            document.getElementById('branchManualDetailView').style.display = 'none';
+            document.getElementById('branchManualMainMenu').style.display = 'grid';
+        }
+        
+        // Close modal if user clicks outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('pageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize FDR page if it's active
+            if (document.getElementById('fdr-dps-rates').classList.contains('active')) {
+                initFDRNavigation();
+            }
+            
+            // Initialize Loan Rates page if it's active
+            if (document.getElementById('bbl-loan-rates').classList.contains('active')) {
+                initLoanRates();
+            }
+            
+            // Initialize Branch Manual if it's active
+            if (document.getElementById('branch-manual').classList.contains('active')) {
+                initBranchManual();
+            }
+        });
+    </script>
+</body>
+</html>
