@@ -2599,6 +2599,18 @@
                 <h1 class="branch-manual-h1">Branch Operation Manual</h1>
             </div>
             
+            <!-- Search Container Added Here -->
+            <div class="branch-manual-search-container">
+                <div class="branch-manual-search-box">
+                    <i class="fas fa-search branch-manual-search-icon"></i>
+                    <input type="text" class="branch-manual-search-input" placeholder="Search in Branch Manual...">
+                    <button class="branch-manual-clear-search" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="branch-manual-search-results"></div>
+            </div>
+            
             <div class="branch-manual-cards-container" id="branchManualMainMenu">
                 <!-- Cash Premises Access Control Card -->
                 <div class="branch-manual-card" data-card="access-control">
@@ -2891,10 +2903,13 @@
                 </div>
             </div>
             
-            <!-- Cash Premises Access Control Detail View -->
-            <div id="branchManualDetailView" style="display: none;">
-                <div class="branch-manual-header">
-                    <h1 class="branch-manual-h1" id="branchManualDetailTitle">Cash Premises Access Control</h1>
+            <!-- Branch Manual Detail View -->
+            <div id="branchManualDetailView" class="branch-manual-detail-view" style="display: none;">
+                <div class="branch-manual-detail-header">
+                    <div class="branch-manual-detail-icon" id="branchManualDetailIcon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h2 class="branch-manual-detail-title" id="branchManualDetailTitle">Cash Premises Access Control</h2>
                 </div>
                 
                 <div class="branch-manual-page-navigation">
@@ -2903,63 +2918,12 @@
                     </button>
                 </div>
                 
-                <div class="branch-manual-detail-view">
-                    <div class="branch-manual-detail-header">
-                        <div class="branch-manual-detail-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <h2 class="branch-manual-detail-title">Entry Restricted Area</h2>
-                    </div>
-                    
-                    <div class="branch-manual-detail-content">
-                        <div class="branch-manual-animated-lines-container">
-                            <div class="branch-manual-line-box branch-manual-line-1">
-                                <div class="branch-manual-line-content">
-                                    <i class="fas fa-exclamation-circle branch-manual-line-icon"></i>
-                                    <span>Cash premises are Entry Restricted area.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="branch-manual-line-box branch-manual-line-2">
-                                <div class="branch-manual-line-content">
-                                    <i class="fas fa-user-shield branch-manual-line-icon"></i>
-                                    <span>This means that only authorized personnel are allowed to enter these areas.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="branch-manual-line-box branch-manual-line-3">
-                                <div class="branch-manual-line-content">
-                                    <i class="fas fa-ban branch-manual-line-icon"></i>
-                                    <span>Unauthorized access is strictly prohibited.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="branch-manual-line-box branch-manual-line-4">
-                                <div class="branch-manual-line-content">
-                                    <i class="fas fa-gavel branch-manual-line-icon"></i>
-                                    <span>Violation may result in disciplinary action.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="branch-manual-line-box branch-manual-line-5">
-                                <div class="branch-manual-line-content">
-                                    <i class="fas fa-clipboard-check branch-manual-line-icon"></i>
-                                    <span>All access must be logged in the visitor register.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="branch-manual-line-box branch-manual-line-6">
-                                <div class="branch-manual-line-content">
-                                    <i class="fas fa-eye branch-manual-line-icon"></i>
-                                    <span>CCTV monitoring is active in all restricted areas.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="branch-manual-back-button" onclick="showBranchManualMainMenu()">
-                        <i class="fas fa-arrow-left"></i> Back to Main Menu
-                    </div>
+                <div class="branch-manual-detail-content" id="branchManualDetailContent">
+                    <!-- Content will be dynamically loaded here -->
+                </div>
+                
+                <div class="branch-manual-back-button" onclick="showBranchManualMainMenu()">
+                    <i class="fas fa-arrow-left"></i> Back to Main Menu
                 </div>
             </div>
             
@@ -3479,22 +3443,306 @@
                     showBranchManualDetail(cardId);
                 });
             });
+            
+            // Initialize search functionality
+            initBranchManualSearch();
         }
         
         function showBranchManualDetail(cardId) {
+            // Hide main menu
             document.getElementById('branchManualMainMenu').style.display = 'none';
-            document.getElementById('branchManualDetailView').style.display = 'block';
+            
+            // Show detail view
+            const detailView = document.getElementById('branchManualDetailView');
+            detailView.style.display = 'block';
             
             // Update title based on selected card
             const card = document.querySelector(`[data-card="${cardId}"] .branch-manual-card-title`);
             if (card) {
                 document.getElementById('branchManualDetailTitle').textContent = card.textContent;
             }
+            
+            // Update icon based on selected card
+            const cardIcon = document.querySelector(`[data-card="${cardId}"] .branch-manual-card-icon i`);
+            if (cardIcon) {
+                const iconClass = cardIcon.className;
+                document.getElementById('branchManualDetailIcon').innerHTML = `<i class="${iconClass}"></i>`;
+            }
+            
+            // Update content based on the selected card
+            updateBranchManualContent(cardId);
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
         
         function showBranchManualMainMenu() {
             document.getElementById('branchManualDetailView').style.display = 'none';
             document.getElementById('branchManualMainMenu').style.display = 'grid';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        function updateBranchManualContent(cardId) {
+            const contentContainer = document.getElementById('branchManualDetailContent');
+            
+            // Default content (for Cash Premises Access Control)
+            let content = '';
+            
+            // Add different content based on the card selected
+            if (cardId === 'access-control') {
+                content = `
+                    <div class="branch-manual-animated-lines-container">
+                        <div class="branch-manual-line-box branch-manual-line-1">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-exclamation-circle branch-manual-line-icon"></i>
+                                <span>Cash premises are Entry Restricted area.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-2">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-user-shield branch-manual-line-icon"></i>
+                                <span>This means that only authorized personnel are allowed to enter these areas.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-3">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-ban branch-manual-line-icon"></i>
+                                <span>Unauthorized access is strictly prohibited.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-4">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-gavel branch-manual-line-icon"></i>
+                                <span>Violation may result in disciplinary action.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-5">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-clipboard-check branch-manual-line-icon"></i>
+                                <span>All access must be logged in the visitor register.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-6">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-eye branch-manual-line-icon"></i>
+                                <span>CCTV monitoring is active in all restricted areas.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-7">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-id-card branch-manual-line-icon"></i>
+                                <span>All personnel must wear identification badges at all times.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-8">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-door-closed branch-manual-line-icon"></i>
+                                <span>Cash area doors must remain locked when not in use.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-9">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-calendar-alt branch-manual-line-icon"></i>
+                                <span>Access logs must be reviewed daily by the Branch Manager.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-10">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-file-alt branch-manual-line-icon"></i>
+                                <span>Unauthorized access incidents must be reported immediately to Security Department.</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (cardId === 'security-cash') {
+                content = `
+                    <div class="branch-manual-animated-lines-container">
+                        <div class="branch-manual-line-box branch-manual-line-1">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-shield-alt branch-manual-line-icon"></i>
+                                <span>Security guards must be posted at all entrances to the cash area.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-2">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-camera branch-manual-line-icon"></i>
+                                <span>Multiple CCTV cameras must cover all angles of the cash handling area.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-3">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-money-bill-wave branch-manual-line-icon"></i>
+                                <span>Cash counting must never be done outside designated secure areas.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-4">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-user-friends branch-manual-line-icon"></i>
+                                <span>Dual control principle applies - no single person should handle cash alone.</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (cardId === 'vault-management') {
+                content = `
+                    <div class="branch-manual-animated-lines-container">
+                        <div class="branch-manual-line-box branch-manual-line-1">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-vault branch-manual-line-icon"></i>
+                                <span>Main vault must have dual locking mechanism with separate key holders.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-2">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-chart-line branch-manual-line-icon"></i>
+                                <span>Daily cash limits: Teller Counter - ৳5,00,000, Main Vault - ৳50,00,000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-3">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-exchange-alt branch-manual-line-icon"></i>
+                                <span>Excess cash must be transferred to main vault before end of business day.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-4">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-file-invoice-dollar branch-manual-line-icon"></i>
+                                <span>All cash movements must be documented in cash movement register.</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Default content for other cards (you can expand this for each card)
+                content = `
+                    <div class="branch-manual-animated-lines-container">
+                        <div class="branch-manual-line-box branch-manual-line-1">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-info-circle branch-manual-line-icon"></i>
+                                <span>Detailed content for ${cardId.replace('-', ' ')} section is under development.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-2">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-tools branch-manual-line-icon"></i>
+                                <span>This section will be updated with complete operational procedures.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-manual-line-box branch-manual-line-3">
+                            <div class="branch-manual-line-content">
+                                <i class="fas fa-clock branch-manual-line-icon"></i>
+                                <span>Please check back soon for the complete operational manual.</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            contentContainer.innerHTML = content;
+        }
+        
+        // Initialize Branch Manual Search
+        function initBranchManualSearch() {
+            const searchInput = document.querySelector('.branch-manual-search-input');
+            const clearButton = document.querySelector('.branch-manual-clear-search');
+            const searchResults = document.querySelector('.branch-manual-search-results');
+            
+            if (!searchInput) return;
+            
+            // Show/Hide clear button based on input
+            searchInput.addEventListener('input', function() {
+                clearButton.style.display = this.value.length > 0 ? 'flex' : 'none';
+                
+                if (this.value.length > 2) {
+                    performSearch(this.value);
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // Clear search
+            clearButton.addEventListener('click', function() {
+                searchInput.value = '';
+                clearButton.style.display = 'none';
+                searchResults.style.display = 'none';
+                searchInput.focus();
+            });
+            
+            // Close search results when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.branch-manual-search-container')) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+        
+        function performSearch(query) {
+            const searchResults = document.querySelector('.branch-manual-search-results');
+            const cards = document.querySelectorAll('#branchManualMainMenu .branch-manual-card');
+            
+            let resultsHTML = '';
+            let resultCount = 0;
+            
+            // Convert query to lowercase for case-insensitive search
+            const lowerQuery = query.toLowerCase();
+            
+            cards.forEach(card => {
+                const cardId = card.getAttribute('data-card');
+                const cardTitle = card.querySelector('.branch-manual-card-title').textContent.toLowerCase();
+                const cardNumber = card.querySelector('.branch-manual-card-number').textContent;
+                
+                // Check if card title contains the search query
+                if (cardTitle.includes(lowerQuery)) {
+                    resultCount++;
+                    const formattedTitle = cardTitle.replace(
+                        new RegExp(`(${lowerQuery})`, 'gi'),
+                        '<span class="branch-manual-search-result-highlight">$1</span>'
+                    );
+                    
+                    resultsHTML += `
+                        <div class="branch-manual-search-result-item" onclick="showBranchManualDetail('${cardId}')">
+                            <i class="fas fa-book branch-manual-search-result-icon"></i>
+                            <div class="branch-manual-search-result-text">
+                                <div class="branch-manual-search-result-title">${formattedTitle}</div>
+                                <div class="branch-manual-search-result-context">Section ${cardNumber}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            // Show results
+            if (resultCount > 0) {
+                searchResults.innerHTML = resultsHTML;
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = `
+                    <div class="branch-manual-search-no-results">
+                        <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5;"></i>
+                        <p>No results found for "${query}"</p>
+                    </div>
+                `;
+                searchResults.style.display = 'block';
+            }
         }
         
         // Close modal if user clicks outside of it
